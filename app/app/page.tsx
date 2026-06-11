@@ -25,6 +25,26 @@ export type FlightData = {
   aircraft_type: string | null;
 };
 
+export type CompensationTier = {
+  amount: number;
+  currency: string;
+  condition: string;
+};
+
+export type CompensationResult = {
+  regulation: "APPR" | "EU261" | "DOT" | "NONE";
+  regulation_name: string;
+  regulation_url: string;
+  eligible: boolean;
+  ineligible_reason: string | null;
+  tiers: CompensationTier[];
+  recommended_tier: CompensationTier | null;
+  distance_km: number | null;
+  carrier_size: "large" | "small" | null;
+  next_steps: string[];
+  claim_deadline: string;
+};
+
 export type AnalysisResult = {
   flight: FlightData | null;
   departure_weather: WeatherData | null;
@@ -36,6 +56,7 @@ export type AnalysisResult = {
   explanation: string[];
   departure_airport_name: string;
   arrival_airport_name: string;
+  compensation: CompensationResult | null;
   demo_mode: boolean;
 };
 

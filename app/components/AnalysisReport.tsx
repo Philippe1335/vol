@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnalysisResult, WeatherData } from "@/app/page";
+import CompensationCard from "@/components/CompensationCard";
 
 type Props = { result: AnalysisResult };
 
@@ -189,6 +190,11 @@ export default function AnalysisReport({ result }: Props) {
           <p className="text-xs text-slate-400 uppercase tracking-wider mb-1">Statut ATC (FAA)</p>
           <p className="text-blue-300 text-sm">{result.faa_status}</p>
         </div>
+      )}
+
+      {/* Compensation */}
+      {result.compensation && (
+        <CompensationCard compensation={result.compensation} />
       )}
 
       {/* Analyse détaillée */}
